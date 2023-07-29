@@ -1,0 +1,16 @@
+.mono
+NuGet
+gtk-2.0
+help
+menus
+simple-update-notifier
+stetic
+xbuild
+git
+nvim
+tmux/plugins/tmux-mem-cpu-load/*
+tmux/plugins/tpm/*
+zsh/.zsh_history
+zsh/.zsh_sessions
+zsh/.zcompdump
+
