@@ -8,6 +8,7 @@ stetic
 xbuild
 git
 nvim
+background
 zsh/.zsh_history
 zsh/.zsh_sessions
 zsh/.zcompdump
