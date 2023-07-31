@@ -8,6 +8,7 @@ fi
 # source
 plug "$XDG_CONFIG_HOME/zsh/alias.zsh"
 plug "$XDG_CONFIG_HOME/zsh/export.zsh"
+plug "$XDG_CONFIG_HOME/zsh/functions.zsh"
 plug "$XDG_CONFIG_HOME/zsh/prompt.zsh-theme"
 
 # plugins
