@@ -9,6 +9,7 @@ xbuild
 git
 nvim
 background
+tmux/plugins
 zsh/.zsh_history
 zsh/.zsh_sessions
 zsh/.zcompdump

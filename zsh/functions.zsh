@@ -9,3 +9,14 @@ function mkcd {
     mkdir $@ && cd $last
   fi
 }
+
+function cl {
+    if [ -z "$TMUX" ]; then
+        zle clear-screen
+    else
+        zle clear-screen && tmux clear-history
+    fi
+}
+
+zle -N cl
+bindkey "^l" cl

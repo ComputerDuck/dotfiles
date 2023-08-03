@@ -1,5 +1,5 @@
 if [ -z "$TMUX" ]; then
- exec arch -x86_64 tmux
+ exec arch -x86_64 tmux "new-session" -D -A -s "main"
 fi
 
 # Created by Zap installer
@@ -20,7 +20,6 @@ plug "esc/conda-zsh-completion"
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
-
 
 # history
 export HISTFILE="$HOME/.zsh_history"

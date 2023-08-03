@@ -17,4 +17,5 @@ alias tarcmd='cat ~/.config/help/tar'
 
 alias am="zsh ~/am/src/am.sh"
 # alias am="zsh ~/am/src/am.sh np & tmux split-window -h && tmux select-pane -R &&~/am/src/select.sh"
-
+# alias cl="clear && tmux clear-history"
+alias src="source ~/.config/zsh/.zshrc"
