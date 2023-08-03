@@ -1,16 +1,5 @@
 alt_send_esc: false
 
-# ~/.alacritty.yml
-
-# shell:
-#   program: /usr/local/bin/tmux
-#   args:
-#     - new-session
-#     - -A
-#     - -D
-#     - -s
-#     - main
-
 window:
   dimensions:
     columns: 150
@@ -27,8 +16,21 @@ font:
 
   family: RobotoMono Nerd Font Mono
 
-key_bindings:
-  - { key: F,              mods: Command|Shift,        action: ToggleSimpleFullscreen}
+env:
+  TERM: xterm-256color
+
+draw_bold_text_with_bright_colors: false
+
+live_config_reload: true
+
+shell:
+  program: /usr/local/bin/tmux
+  args:
+    - new-session
+    - -A
+    - -D
+    - -s
+    - main
 
 colors:
   # Default colors
@@ -63,10 +65,5 @@ colors:
     cyan:    '0xd65d0e'
     white:   '0xfbf1c7'
 
-env:
-  TERM: xterm-256color
-
-draw_bold_text_with_bright_colors: false
-
-live_config_reload: true
-
+key_bindings:
+  - { key: F,              mods: Command|Shift,        action: ToggleSimpleFullscreen}

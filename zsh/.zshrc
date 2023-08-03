@@ -1,6 +1,6 @@
-if [ -z "$TMUX" ]; then
- exec arch -x86_64 tmux
-fi
+# if [ -z "$TMUX" ]; then
+#  exec arch -x86_64 tmux
+# fi
 
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
