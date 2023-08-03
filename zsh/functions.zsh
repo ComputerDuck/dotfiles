@@ -9,11 +9,3 @@ function mkcd {
     mkdir $@ && cd $last
   fi
 }
-
-# clear scrollback and screen
-function clear-screen {
-    zle clear-screen
-    tmux clear-history
-}
-zle -N clear-screen
-bindkey -v '^L' clear-screen

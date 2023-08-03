@@ -46,9 +46,9 @@ action = "ToggleSimpleFullscreen"
 key = "F"
 mods = "Command|Shift"
 
-[shell]
-args = ["new-session", "-A", "-D", "-s", "main"]
-program = "/usr/local/bin/tmux"
+# [shell]
+# program = "/usr/local/bin/tmux"
+# args = ["new-session", "-A", "-D", "-s", "main"]
 
 [window]
 dynamic_title = true
@@ -57,4 +57,4 @@ title = "Terminal"
 
 [window.dimensions]
 columns = 150
-lines = 45
+lines = 40
