@@ -14,7 +14,19 @@ export PATH="$PATH:$HOME/.rvm/bin"
 #path to own scripts
 export PATH=${PATH}:$HOME/.local/bin
 
+export TERM=alacritty
+
 export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH="${PATH}:$HOME/.config/emacs/bin"
 
 #homebrew
 export PATH="/usr/local/sbin:$PATH"
+#MacPorts
+#export PATH="/opt/local/bin"
+
+export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/postgresql@16/lib/pkgconfig"
+
+export GPG_TTY=$(tty)
+
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=0

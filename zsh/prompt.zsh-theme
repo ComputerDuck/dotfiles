@@ -1,22 +1,33 @@
-# prompt
 autoload -Uz vcs_info
 autoload -U colors && colors
 
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+# Enable git and set formats
+zstyle ':vcs_info:git:*' formats ' (%b%u)'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' unstagedstr '*'
+zstyle ':vcs_info:git*' max-exports 2
+zstyle ':vcs_info:git:*' enable git
+# Add caching
+zstyle ':vcs_info:git:*' use-simple true
 
-zstyle ':vcs_info:*' enable git 
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-zstyle ':vcs_info:git:*' formats ' (%b)'
-
-# 
-+vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        hook_com[staged]+='!' # signify new files with a bang
-    fi
+function async_git_info() {
+    cd -q $1
+    vcs_info
+    print ${vcs_info_msg_0_}
 }
 
-setopt PROMPT_SUBST
-PROMPT="%B%{$fg[red]%}%n %{$fg_bold[green]%}➜ %{$fg[cyan]%}%~%{$reset_color%}"
-PROMPT+="%B%F{yellow}\${vcs_info_msg_0_} "
+function precmd() {
+    if [[ -z $ASYNC_PROC ]]; then
+        async_start_worker vcs_info
+        async_register_callback vcs_info git_info_callback
+    fi
+    
+    async_job vcs_info async_git_info $PWD
+}
+
+function git_info_callback() {
+    PROMPT="%B%{$fg[red]%}%n %{$fg_bold[green]%}➜ %{$fg[cyan]%}%~%{$reset_color%}"
+    PROMPT+="%B%F{yellow}$3 "
+    zle reset-prompt
+}

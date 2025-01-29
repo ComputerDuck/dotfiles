@@ -20,3 +20,18 @@ function cl {
 
 zle -N cl
 bindkey "^l" cl
+
+function wttrin {
+    if [ "$#" -ne 1 ]; then
+        curl wttr.in
+    else
+        curl wttr.in/$1
+    fi
+}
+
+function jfd {
+    ~/.local/bin/nvim-selector
+}
+
+zle -N jfd 
+bindkey "^f" jfd

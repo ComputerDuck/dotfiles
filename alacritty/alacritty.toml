@@ -1,38 +1,14 @@
 live_config_reload = true
+import = [
+    "~/.config/alacritty/themes/themes/custom3.toml"
+]
 
 [colors]
 draw_bold_text_with_bright_colors = false
 
-[colors.bright]
-black = "0x665c54"
-blue = "0xbdae93"
-cyan = "0xd65d0e"
-green = "0x3c3836"
-magenta = "0xebdbb2"
-red = "0xfe8019"
-white = "0xfbf1c7"
-yellow = "0x504945"
-
-[colors.cursor]
-cursor = "0xd5c4a1"
-text = "0x1d2021"
-
-[colors.normal]
-black = "0x1d2021"
-blue = "0x83a598"
-cyan = "0x8ec07c"
-green = "0xb8bb26"
-magenta = "0xd3869b"
-red = "0xfb4934"
-white = "0xd5c4a1"
-yellow = "0xfabd2f"
-
-[colors.primary]
-background = "0x1d2021"
-foreground = "0xd5c4a1"
-
 [env]
-TERM = "xterm-256color"
+TERM = "alacritty-256color"
+TERM_PROGRAM = "alacritty"
 
 [font]
 size = 13
@@ -40,6 +16,13 @@ size = 13
 [font.normal]
 family = "RobotoMono Nerd Font Mono"
 style = "Medium"
+[font.bold]
+family = "RobotoMono Nerd Font Mono"
+style = "Bold"
+[font.italic]
+family = "RobotoMono Nerd Font Mono"
+style = "Italic"
+
 
 [[keyboard.bindings]]
 action = "ToggleSimpleFullscreen"
@@ -52,7 +35,7 @@ mods = "Command|Shift"
 
 [window]
 dynamic_title = true
-opacity = 0.8
+opacity = 0.9
 title = "Terminal"
 
 [window.dimensions]
