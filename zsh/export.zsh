@@ -17,9 +17,6 @@ export PATH=${PATH}:$HOME/.local/bin
 # export TERM=alacritty
 export TERM="xterm-256color"
 
-export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
-export PATH="${PATH}:$HOME/.config/emacs/bin"
-
 #homebrew
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/llvm@19/bin:$PATH"
@@ -34,5 +31,7 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=0
 
 export CC="/usr/local/opt/llvm@19/bin/clang"
 export CXX="/usr/local/opt/llvm@19/bin/clang++"
+
+# export TMUX_SCRIPTS="$HOME/.config/tmux/scripts"
 
 # export LIBRARY_PATH="/usr/local/opt/llvm@19/include/c++/v1"
