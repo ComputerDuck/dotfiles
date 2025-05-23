@@ -1,6 +1,6 @@
 live_config_reload = true
 import = [
-    "~/.config/alacritty/themes/themes/custom3.toml"
+    "~/.config/alacritty/custom_theme.toml"
 ]
 
 [colors]
