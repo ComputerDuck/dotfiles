@@ -1,4 +1,3 @@
-
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -28,7 +27,7 @@ setopt appendhistory
 eval $(opam env)
 # [[ ! -r /Users/hachmann/.opam/opam-init/init.zsh ]] || source /Users/hachmann/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-if [[ "$TERM_PROGRAM" == "alacritty" && -z "$TMUX" ]]; then
+if [[ "$TERM_PROGRAM" == "alacritty" || "$TERM_PROGRAM" == "ghostty" && -z "$TMUX" ]]; then
     # exec arch -x86_64 tmux "new-session" -D -A -s "main"
     if tmux has-session -t "main" 2>/dev/null; then
         exec arch -x86_64 tmux attach-session -t "main"

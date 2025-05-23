@@ -14,19 +14,25 @@ export PATH="$PATH:$HOME/.rvm/bin"
 #path to own scripts
 export PATH=${PATH}:$HOME/.local/bin
 
-export TERM=alacritty
+# export TERM=alacritty
+export TERM="xterm-256color"
 
 export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH="${PATH}:$HOME/.config/emacs/bin"
 
 #homebrew
 export PATH="/usr/local/sbin:$PATH"
-#MacPorts
-#export PATH="/opt/local/bin"
+export PATH="/usr/local/opt/llvm@19/bin:$PATH"
 
 export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/postgresql@16/lib/pkgconfig"
+export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/lib"
 
 export GPG_TTY=$(tty)
 
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=0
+
+export CC="/usr/local/opt/llvm@19/bin/clang"
+export CXX="/usr/local/opt/llvm@19/bin/clang++"
+
+# export LIBRARY_PATH="/usr/local/opt/llvm@19/include/c++/v1"

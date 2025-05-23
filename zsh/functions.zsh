@@ -19,7 +19,7 @@ function cl {
 }
 
 zle -N cl
-bindkey "^l" cl
+bindkey "^b" cl
 
 function wttrin {
     if [ "$#" -ne 1 ]; then
@@ -29,9 +29,3 @@ function wttrin {
     fi
 }
 
-function jfd {
-    ~/.local/bin/nvim-selector
-}
-
-zle -N jfd 
-bindkey "^f" jfd

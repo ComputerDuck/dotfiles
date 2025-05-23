@@ -23,3 +23,4 @@ alias src="source ~/.config/zsh/.zshrc"
 # go live reload
 alias air="~/go/bin/air"
 alias notes="nvim ~/.notes"
+alias nvim="~/scratch/neovim/nvim-macos-x86_64/bin/nvim"
