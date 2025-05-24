@@ -1,26 +1,55 @@
 #!/usr/bin/env bash
 
-if [[ $# -ge 1 ]]; then
-    args="${*:2}"
-    selected=$(find "$1" $args -type d | fzf)
-else
-    selected=$(find ~/ ~/projects ~/work ~/personal -mindepth 1 -maxdepth 4 -type d -not -path "$HOME/Library*" | fzf --exact)
+use_fd() {
+    command -v fd >/dev/null 2>&1
+}
+
+DEFAULT_PATHS=(~/ ~/projects ~/work ~/personal)
+FD_ARGS=(--type d --exclude Library --exclude target --exclude src)
+FIND_ARGS=(-type d -not -path "$HOME/Library*")
+
+# Check if fd is available
+if ! command -v fd >/dev/null 2>&1; then
+    echo "Error: fd is required but not installed" >&2
+    exit 1
 fi
 
-if [[ -z $selected ]]; then
+DEFAULT_PATHS=(~/ ~/projects ~/work ~/personal)
+FD_ARGS=(--type d --exclude Library --exclude target --exclude src)
+
+search_dirs() {
+    # If no arguments provided, use defaults with max-depth 4
+    if [[ $# -eq 0 ]]; then
+        fd . "${DEFAULT_PATHS[@]}" "${FD_ARGS[@]}" --max-depth 4 2>/dev/null
+    else
+        # Pass all arguments directly to fd
+        fd . "$@" "${FD_ARGS[@]}" 2>/dev/null
+    fi | sed 's:/*$::'
+}
+
+selected=$(search_dirs "$@" | fzf \
+    --delimiter="/" --nth=-1 \
+    --preview='ls -A {1} 2>/dev/null | head -30' \
+    --preview-window="right:50%:wrap:hidden" \
+    --bind "ctrl-r:reload($0 $*)" \
+    --bind "?:toggle-preview"
+)
+
+# Exit if no selection was made
+if [[ -z "$selected" ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename "$selected" | tr '. ' '_')
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+    tmux new-session -s "$selected_name" -c "$selected"
     exit 0
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+if ! tmux has-session -t "$selected_name" 2> /dev/null; then
+    tmux new-session -d -s "$selected_name" -c "$selected"
 fi
 
-tmux switch-client -t $selected_name
+tmux switch-client -t "$selected_name"

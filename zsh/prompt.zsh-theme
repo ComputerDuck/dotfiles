@@ -12,9 +12,10 @@ zstyle ':vcs_info:git:*' enable git
 zstyle ':vcs_info:git:*' use-simple true
 
 function async_git_info() {
-    cd -q $1
-    vcs_info
-    print ${vcs_info_msg_0_}
+    if cd -q $1 2>/dev/null; then
+        vcs_info 2>/dev/null
+        print ${vcs_info_msg_0_}
+    fi
 }
 
 function precmd() {
@@ -23,7 +24,10 @@ function precmd() {
         async_register_callback vcs_info git_info_callback
     fi
     
-    async_job vcs_info async_git_info $PWD
+    # Only run if we're in a valid directory
+    if [[ -d "$PWD" ]]; then
+        async_job vcs_info async_git_info $PWD
+    fi
 }
 
 function git_info_callback() {
