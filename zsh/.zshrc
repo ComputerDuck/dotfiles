@@ -21,17 +21,37 @@ compinit
 
 # history
 export HISTFILE="$HOME/.zsh_history"
+export COLORTERM="truecolor"
+
 setopt appendhistory
 
 # opam configuration
 eval $(opam env)
-# [[ ! -r /Users/hachmann/.opam/opam-init/init.zsh ]] || source /Users/hachmann/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 if [[ "$TERM_PROGRAM" == "alacritty" || "$TERM_PROGRAM" == "ghostty" && -z "$TMUX" ]]; then
-    # exec arch -x86_64 tmux "new-session" -D -A -s "main"
     if tmux has-session -t "main" 2>/dev/null; then
         exec arch -x86_64 tmux attach-session -t "main"
     else
         exec arch -x86_64 tmux new-session -s "main"
     fi
 fi
+
+bindkey -v
+setopt noautocd
+
+export PATH="/usr/local/anaconda3/bin:$PATH"
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/local/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+

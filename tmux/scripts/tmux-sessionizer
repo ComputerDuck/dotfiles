@@ -4,9 +4,9 @@ use_fd() {
     command -v fd >/dev/null 2>&1
 }
 
-DEFAULT_PATHS=(~/ ~/projects ~/work ~/personal)
-FD_ARGS=(--type d --exclude Library --exclude target --exclude src)
-FIND_ARGS=(-type d -not -path "$HOME/Library*")
+# DEFAULT_PATHS=(~/ ~/projects ~/work ~/personal)
+# FD_ARGS=(--type d --exclude Library --exclude target --exclude src --exclude build --exclude bin)
+# FIND_ARGS=(-type d -not -path "$HOME/Library*" -not "*lib*" -not "*build*")
 
 # Check if fd is available
 if ! command -v fd >/dev/null 2>&1; then
@@ -15,7 +15,7 @@ if ! command -v fd >/dev/null 2>&1; then
 fi
 
 DEFAULT_PATHS=(~/ ~/projects ~/work ~/personal)
-FD_ARGS=(--type d --exclude Library --exclude target --exclude src)
+FD_ARGS=(--type d --exclude Library --exclude target --exclude src --exclude build --exclude bin)
 
 search_dirs() {
     # If no arguments provided, use defaults with max-depth 4
@@ -29,8 +29,8 @@ search_dirs() {
 
 selected=$(search_dirs "$@" | fzf \
     --delimiter="/" --nth=-1 \
-    --preview='ls -A {1} 2>/dev/null | head -30' \
-    --preview-window="right:50%:wrap:hidden" \
+    --preview='tree -I "target" -I "objects" -I "build" -I "bin" -I "lib" {}' \
+    --preview-window="right:50%:wrap" \
     --bind "ctrl-r:reload($0 $*)" \
     --bind "?:toggle-preview"
 )

@@ -7,7 +7,6 @@ import = [
 draw_bold_text_with_bright_colors = false
 
 [env]
-TERM = "alacritty-256color"
 TERM_PROGRAM = "alacritty"
 
 [font]

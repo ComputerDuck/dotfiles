@@ -31,7 +31,8 @@ function precmd() {
 }
 
 function git_info_callback() {
-    PROMPT="%B%{$fg[red]%}%n %{$fg_bold[green]%}➜ %{$fg[cyan]%}%~%{$reset_color%}"
-    PROMPT+="%B%F{yellow}$3 "
+    PROMPT="%B%{$fg[red]%}%n %{$fg_bold[green]%}➜ %{$fg[cyan]%}%~%{$reset_color%}%b"
+    PROMPT+="%B%F{yellow}$3%f%b"
+    PROMPT+=" "
     zle reset-prompt
 }
